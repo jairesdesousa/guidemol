@@ -64,6 +64,9 @@ For example, to calculate an EP grid with Gasteiger charges, centered at (0,0,0)
 
 guidemol.py -i input.sdf -g pot -p Gasteiger -cx 0 -cy 0 -cz 0 -r 0.5 -w 3 -sx 5 -sy 5 -sz 5 -o outfile.csv
 
+## Author contact
+Joao Aires-de-Sousa (jas_at_fct.unl.pt)
+
 
 ## Acknowledgements
 
