@@ -3,7 +3,7 @@
 
 ## Brief description
 
-GUIDEMOL is a Python computer program based on the RDKit software to process molecular structures and calculate molecular descriptors with a graphical user interface using the tkinter package. It can calculate descriptors already implemented in RDKit as well as grid representations of 3D molecular structures using the electrostatic potential or voxels. A CLI is also provided for the calculation of grid representations.
+GUIDEMOL is a Python computer program based on the RDKit software (RDKit: Open-source cheminformatics. https://www.rdkit.org) to process molecular structures and calculate molecular descriptors with a graphical user interface using the tkinter package. It can calculate descriptors already implemented in RDKit as well as grid representations of 3D molecular structures using the electrostatic potential or voxels. A CLI is also provided for the calculation of grid representations.
 
 
 ## Installation
