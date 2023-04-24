@@ -13,11 +13,15 @@ GUIDEMOL requires the installation of RDKit. Updated recipes for the installatio
 
 ## How to use
 
-Download the guidemol.py file to some directory, navigate via command line to this directory (depending on your installation you may need to activate an rdkit environment by typing ‘activate my-rdkit-env’).
+Download the guidemol.py file to some directory, navigate via command line to this directory.
+Depending on your installation you may need to activate an rdkit environment by typing ‘activate my-rdkit-env’.
 
-Then type 
+Then type
+
 python guidemol.py
+
 or
+
 python3 guidemol.py
 
 
