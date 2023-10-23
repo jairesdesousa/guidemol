@@ -8,7 +8,7 @@ GUIDEMOL is a Python computer program based on the RDKit software (RDKit: Open-s
 
 ## Installation
 
-GUIDEMOL requires the installation of RDKit. Updated recipes for the installation of RDKit (e.g. vai Conda or PIP) in various operating systems are provided at https://www.rdkit.org/docs/Install.html
+GUIDEMOL requires the installation of RDKit. Updated recipes for the installation of RDKit (e.g. via Conda or PIP) in various operating systems are provided at https://www.rdkit.org/docs/Install.html
 
 
 ## How to use
