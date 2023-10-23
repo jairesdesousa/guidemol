@@ -32,6 +32,8 @@ python3 guidemol_vx.x.x.py
 3. Click on “3D from SMILES”.
 4. Chose the input file with the SMILES strings, then an output file to save the 3D structures in the MDL SDFile format.
 
+Note: GUIDEMOL, in its current version, does not explore the generation of multiple conformers. However, code is publicly available to generate a set of conformers and get the lowest energy structure, e.g. from https://github.com/pstjohn/bde, which can be easily inserted into GUIDEMOL.
+
 ### Calculate molecular descriptors
 
 1. Under “Molecular descriptors” select the descriptors to be calculated. For the “Grid of potential” and “Grid of voxels” descriptors you may change the default parameters.
