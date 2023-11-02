@@ -18,12 +18,15 @@ Depending on your installation you may need to activate an rdkit environment by 
 
 Then type
 
+```
 python guidemol_vx.x.x.py
+```
 
 or
 
+```
 python3 guidemol_vx.x.x.py
-
+```
 
 ### Generate 3D structures
 
@@ -47,29 +50,35 @@ A log file is also created in the same directory to register the successful proc
 
 The CLI uses the command
 
+```
 guidemol_vx.x.x.py [-h] -i I [-o O] -g {pot,vox} -p {Gasteiger,MMFF,MR,LogP,AtomicNumber} -cx CX -cy CY -cz CZ -r R -w W -sx SX -sy SY -sz SZ
+```
 
 with the specification of the input file, the output file (optional), the type of grid (EP or voxels), the atomic property, the xyz coordinates of the grid center, the cube size, the cutoff distance (in EP grids) or the sigma value (in voxel grids) and the size of the grid in each direction.
 
 options:
-  -h, --help		show this help message and exit
-  -i I			Input file
-  -o O			Output file (optional)
-  -g {pot,vox}		Type of grid
-  -p {Gasteiger,MMFF,MR,LogP,AtomicNumber}
-			Atomic property
-  -cx CX		x coordinate of grid center
-  -cy CY		y coordinate of grid center
-  -cz CZ		z coordinate of grid center
-  -r R			Cube size (Angstrom)
-  -w W			Atom reach (cutoff distance or sigma)
-  -sx SX		Size of grid (xx axys)
-  -sy SY		Size of grid (yy axys)
-  -sz SZ		Size of grid (zz axys)
+
+```
+  -h, --help                                 show this help message and exit
+  -i I                                       Input file
+  -o O                                       Output file (optional)
+  -g {pot,vox}                               Type of grid
+  -p {Gasteiger,MMFF,MR,LogP,AtomicNumber}   Atomic property
+  -cx CX                                     x coordinate of grid center
+  -cy CY                                     y coordinate of grid center
+  -cz CZ                                     z coordinate of grid center
+  -r R                                       Cube size (Angstrom)
+  -w W                                       Atom reach (cutoff distance or sigma)
+  -sx SX                                     Size of grid (xx axys)
+  -sy SY                                     Size of grid (yy axys)
+  -sz SZ                                     Size of grid (zz axys)
+```
 
 For example, to calculate an EP grid with Gasteiger charges, centered at (0,0,0), with size of each side 5 Å, a resolution of 0.5 Å and a cutoff of 3 Å for molecules in the file input.sdf and save the result in the file outfile.csv:
 
+```
 guidemol_vx.x.x.py -i input.sdf -g pot -p Gasteiger -cx 0 -cy 0 -cz 0 -r 0.5 -w 3 -sx 5 -sy 5 -sz 5 -o outfile.csv
+```
 
 ## Author contact
 Joao Aires-de-Sousa (jas_at_fct.unl.pt)
