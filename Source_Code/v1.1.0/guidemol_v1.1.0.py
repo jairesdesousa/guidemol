@@ -1,14 +1,16 @@
-import argparse, sys
+import argparse
+import tkinter as tk
+from tkinter import filedialog as fd
+from tkinter.messagebox import showinfo
+import math
+import sys
+
 import rdkit
 from rdkit import Chem
 from rdkit.Chem import Descriptors, rdMolDescriptors
 from rdkit.Chem import AllChem
 from rdkit.Chem.MolStandardize import rdMolStandardize
 from rdkit.ML.Descriptors import MoleculeDescriptors 
-import tkinter as tk
-from tkinter import filedialog as fd
-from tkinter.messagebox import showinfo
-import math
 
 class GuidemolGUI:
     """A class to represent the GUI of the app
