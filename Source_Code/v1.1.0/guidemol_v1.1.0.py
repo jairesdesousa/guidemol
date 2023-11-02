@@ -1,3 +1,5 @@
+#!/usr/bin/env python3
+
 import argparse
 import tkinter as tk
 from tkinter import filedialog as fd
