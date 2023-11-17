@@ -1,15 +1,12 @@
 # GUIDEMOL: a Python graphical user interface for molecular descriptors based on RDKit
 
-
 ## Brief description
 
 GUIDEMOL is a Python computer program based on the RDKit software (RDKit: Open-source cheminformatics. https://www.rdkit.org) to process molecular structures and calculate molecular descriptors with a graphical user interface using the tkinter package. It can calculate descriptors already implemented in RDKit as well as grid representations of 3D molecular structures using the electrostatic potential or voxels. A CLI is also provided for the calculation of grid representations.
 
-
 ## Installation
 
 GUIDEMOL requires the installation of RDKit. Updated recipes for the installation of RDKit (e.g. via Conda or PIP) in various operating systems are provided at https://www.rdkit.org/docs/Install.html
-
 
 ## How to use
 
@@ -81,12 +78,11 @@ guidemol_vx.x.x.py -i input.sdf -g pot -p Gasteiger -cx 0 -cy 0 -cz 0 -r 0.5 -w 
 ```
 
 ## Author contact
-Joao Aires-de-Sousa (jas_at_fct.unl.pt)
 
+Joao Aires-de-Sousa (jas_at_fct.unl.pt)
 
 ## Acknowledgements
 
 This work was supported by the Associate Laboratory for Green Chemistry – LAQV, which is financed by national funds from Fundação para a Ciência e Tecnologia (FCT/MCTES), Portugal, under grant UIDB/50006/2020. It was also supported by EU ESIF funds (P2020 SI&IDT 17/SI/2019/47212).
 
 Aires De Sousa, J. GUIDEMOL: A Python Graphical User Interface for Molecular Descriptors Based on RDKit. *Mol. Inf.* **2023**, <https://doi.org/10.1002/minf.202300190>.
-
