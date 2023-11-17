@@ -56,19 +56,19 @@ with the specification of the input file, the output file (optional), the type o
 options:
 
 ```
-  -h, --help                                 show this help message and exit
-  -i I                                       Input file
-  -o O                                       Output file (optional)
-  -g {pot,vox}                               Type of grid
-  -p {Gasteiger,MMFF,MR,LogP,AtomicNumber}   Atomic property
-  -cx CX                                     x coordinate of grid center
-  -cy CY                                     y coordinate of grid center
-  -cz CZ                                     z coordinate of grid center
-  -r R                                       Cube size (Angstrom)
-  -w W                                       Atom reach (cutoff distance or sigma)
-  -sx SX                                     Size of grid (xx axys)
-  -sy SY                                     Size of grid (yy axys)
-  -sz SZ                                     Size of grid (zz axys)
+-h, --help                                 show this help message and exit
+-i I                                       Input file
+-o O                                       Output file (optional)
+-g {pot,vox}                               Type of grid
+-p {Gasteiger,MMFF,MR,LogP,AtomicNumber}   Atomic property
+-cx CX                                     x coordinate of grid center
+-cy CY                                     y coordinate of grid center
+-cz CZ                                     z coordinate of grid center
+-r R                                       Cube size (Angstrom)
+-w W                                       Atom reach (cutoff distance or sigma)
+-sx SX                                     Size of grid (xx axys)
+-sy SY                                     Size of grid (yy axys)
+-sz SZ                                     Size of grid (zz axys)
 ```
 
 For example, to calculate an EP grid with Gasteiger charges, centered at (0,0,0), with size of each side 5 Å, a resolution of 0.5 Å and a cutoff of 3 Å for molecules in the file input.sdf and save the result in the file outfile.csv:
