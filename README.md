@@ -122,5 +122,5 @@ Tecnologia (FCT/MCTES), Portugal, under grant UIDB/50006/2020. It was also
 supported by EU ESIF funds (P2020 SI&IDT 17/SI/2019/47212).
 
 Aires De Sousa, J. GUIDEMOL: A Python Graphical User Interface for Molecular
-Descriptors Based on RDKit. *Mol. Inf.* **2023**,
+Descriptors Based on RDKit. *Mol. Inf.* **2023**, *42*, e202300190.
 <https://doi.org/10.1002/minf.202300190>.
