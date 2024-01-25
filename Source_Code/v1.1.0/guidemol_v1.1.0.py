@@ -1,21 +1,25 @@
-import argparse, sys
+#!/usr/bin/env python3
+
+import argparse
+import tkinter as tk
+from tkinter import filedialog as fd
+from tkinter.messagebox import showinfo
+import math
+import sys
+
 import rdkit
 from rdkit import Chem
 from rdkit.Chem import Descriptors, rdMolDescriptors
 from rdkit.Chem import AllChem
 from rdkit.Chem.MolStandardize import rdMolStandardize
-from rdkit.ML.Descriptors import MoleculeDescriptors 
-import tkinter as tk
-from tkinter import filedialog as fd
-from tkinter.messagebox import showinfo
-import math
+from rdkit.ML.Descriptors import MoleculeDescriptors
 
 class GuidemolGUI:
     """A class to represent the GUI of the app
     Consists of a canvas + scrollbar
     The canvas includes a main frame (frameM) with:
         - frame_gen3d: left frame concerning the generation of 3D sructures
-        - frame_desc: first right frame for the calculation of RDKit 
+        - frame_desc: first right frame for the calculation of RDKit
         descriptors
         - frame_grid_potential: second right frame for the calculation of a
         grid of electrostatic potential (EP)
@@ -24,7 +28,7 @@ class GuidemolGUI:
     """
 
     def __init__(self,window):
-        """Configure the main window, 
+        """Configure the main window,
            Create:
             - the scrollbar, frames, buttons, labels
             Place all widgets in the GUI
@@ -75,7 +79,7 @@ class GuidemolGUI:
         canvas.configure(scrollregion = (0,0,620,750))
         window.columnconfigure(0, weight=1)
         window.rowconfigure(0, weight=1)
-        
+
     def create_frame_desc(self, window):
         """Create the frame concerning the calculation of RDKit descriptors:
             - create the checkbuttons and the associated variables
@@ -552,7 +556,7 @@ class GuidemolGUI:
             mol_id += 1
             self.curr_mol_text.set(mol_id)
             self.window.update_idletasks()
-            if mol is None: 
+            if mol is None:
                 logoutput = open(foutput.name+"_log.txt", "a")
                 logoutput.write(str(mol_id)+": Could not be read.\n")
                 logoutput.close()
@@ -570,7 +574,7 @@ class GuidemolGUI:
                 if self.Optimize_flag.get()==1:
                     AllChem.MMFFOptimizeMolecule(
                                                  mol,
-                                                 mmffVariant='MMFF94', 
+                                                 mmffVariant='MMFF94',
                                                  maxIters=5000
                                                  )
                 w.write(mol)
@@ -582,7 +586,7 @@ class GuidemolGUI:
                 logoutput.write(str(mol_id)+": No conformer was generated.\n")
                 logoutput.close()
         w.close()
-        
+
     def calcdesc(self):
         """Read molecules in the MDL SDFile format from a file, calculate
            descriptors according to the status of flag variables (specified in
@@ -603,7 +607,7 @@ class GuidemolGUI:
             mol_id += 1
             self.curr_mol_text.set(mol_id)
             self.window.update_idletasks()
-            if mol is None: 
+            if mol is None:
                 logoutput = open(foutput.name+"_log.txt", "a")
                 logoutput.write(str(mol_id)+": Could not be read.\n")
                 logoutput.close()
@@ -632,8 +636,8 @@ class GuidemolGUI:
                     descriptorsPEOE=rdMolDescriptors.PEOE_VSA_(mol)
                 if self.SMR_flag.get()==1:
                     descriptorsSMR=rdMolDescriptors.SMR_VSA_(mol)
-                
-                #Print descriptors labels in the first line 
+
+                #Print descriptors labels in the first line
                 if mol_id==1:
                     if self.RDF_flag.get()==1:
                         for i in range(len(descriptorsRDF)):
@@ -693,12 +697,12 @@ class GuidemolGUI:
                         voxcsizez=float(self.voxcsizez_str.get())/2
                         voxgrid_sizex, voxgrid_sizey, voxgrid_sizez =(
                             grid_coords_from_xyz(
-                                                 voxcsizex, 
-                                                 voxcsizey, 
-                                                 voxcsizez, 
-                                                 0, 
-                                                 0, 
-                                                 0, 
+                                                 voxcsizex,
+                                                 voxcsizey,
+                                                 voxcsizez,
+                                                 0,
+                                                 0,
+                                                 0,
                                                  voxcube_size
                                                  )
                         )
@@ -747,13 +751,13 @@ class GuidemolGUI:
                     gop = Grid_of_potential(
                             mol,
                             self.ChargeType.get(),
-                            centerx, 
-                            centery, 
-                            centerz, 
-                            cube_size, 
-                            atmreach, 
-                            grid_sizex, 
-                            grid_sizey, 
+                            centerx,
+                            centery,
+                            centerz,
+                            cube_size,
+                            atmreach,
+                            grid_sizex,
+                            grid_sizey,
                             grid_sizez
                             )
                     for colz in range(-grid_sizez,grid_sizez+1):
@@ -767,13 +771,13 @@ class GuidemolGUI:
                     gov = Grid_of_voxels(
                             mol,
                             self.VoxProp.get(),
-                            voxcenterx, 
-                            voxcentery, 
-                            voxcenterz, 
-                            voxcube_size, 
-                            voxsigma, 
-                            voxgrid_sizex, 
-                            voxgrid_sizey, 
+                            voxcenterx,
+                            voxcentery,
+                            voxcenterz,
+                            voxcube_size,
+                            voxsigma,
+                            voxgrid_sizex,
+                            voxgrid_sizey,
                             voxgrid_sizez
                             )
                     for colz in range(-voxgrid_sizez,voxgrid_sizez+1):
@@ -798,7 +802,7 @@ class GuidemolGUI:
                 logoutput.close()
                 if mol_id == 1: break
         foutput.close()
-        
+
 
 
 class Grid_of_potential:
@@ -808,15 +812,15 @@ class Grid_of_potential:
     Parameters:
         mol - the molecule (RDKit object)
         prop - atomic property
-        centerx - x coordinate of the center of the grid 
-        centery - y coordinate of the center of the grid   
+        centerx - x coordinate of the center of the grid
+        centery - y coordinate of the center of the grid
         centerz - z coordinate of the center of the grid
-        (the center of the grid is the center of the cube at the center) 
+        (the center of the grid is the center of the cube at the center)
         cube_size - size (in Angstrom) of the cubes making the grid
         atmreach - maximum distance of an atom to the cubes to be
                    influenced by that atom
-        grid_sizex - size of the grid (in Angstrom) in the x direction 
-        grid_sizey - size of the grid (in Angstrom) in the y direction 
+        grid_sizex - size of the grid (in Angstrom) in the x direction
+        grid_sizey - size of the grid (in Angstrom) in the y direction
         grid_sizez - size of the grid (in Angstrom) in the y direction
 
     Variable:
@@ -831,13 +835,13 @@ class Grid_of_potential:
                  self,
                  mol,
                  prop,
-                 centerx, 
-                 centery, 
-                 centerz, 
-                 cube_size, 
-                 atmreach, 
-                 grid_sizex, 
-                 grid_sizey, 
+                 centerx,
+                 centery,
+                 centerz,
+                 cube_size,
+                 atmreach,
+                 grid_sizex,
+                 grid_sizey,
                  grid_sizez
                  ):
         """Initialize variables,
@@ -884,12 +888,12 @@ class Grid_of_potential:
                 atm_charge=self.mmffprops.GetMMFFPartialCharge(atm.GetIdx())
             atm_coords=self.mol.GetConformer().GetAtomPosition(atm.GetIdx())
             atm_gx, atm_gy, atm_gz = grid_coords_from_xyz(
-                                                          atm_coords.x, 
-                                                          atm_coords.y, 
-                                                          atm_coords.z, 
-                                                          self.centerx, 
-                                                          self.centery, 
-                                                          self.centerz, 
+                                                          atm_coords.x,
+                                                          atm_coords.y,
+                                                          atm_coords.z,
+                                                          self.centerx,
+                                                          self.centery,
+                                                          self.centerz,
                                                           self.cube_size
                                                           )
             for runx in range(-self.subgrid_size,self.subgrid_size+1):
@@ -945,7 +949,7 @@ class Grid_of_potential:
                                                 pointgrid
                                             )
                                     )
-        
+
 
 class Grid_of_voxels:
     """Represents a 3D grid of voxels obtained from the 3D structure of a
@@ -954,14 +958,14 @@ class Grid_of_voxels:
     Parameters:
         mol - the molecule (RDKit object)
         prop - atomic property
-        voxcenterx - x coordinate of the center of the grid 
-        voxcentery - y coordinate of the center of the grid   
+        voxcenterx - x coordinate of the center of the grid
+        voxcentery - y coordinate of the center of the grid
         voxcenterz - z coordinate of the center of the grid
-        (the center of the grid is the center of the cube in its center) 
-        voxcube_size - size (in Angstrom) of the cubes making the grid 
+        (the center of the grid is the center of the cube in its center)
+        voxcube_size - size (in Angstrom) of the cubes making the grid
         voxsigma - the sigma parameter in the voxelisation Gaussian kernel
-        voxgrid_sizex - size of the grid (in Angstrom) in the x direction 
-        voxgrid_sizey - size of the grid (in Angstrom) in the y direction 
+        voxgrid_sizex - size of the grid (in Angstrom) in the x direction
+        voxgrid_sizey - size of the grid (in Angstrom) in the y direction
         voxgrid_sizez - size of the grid (in Angstrom) in the y direction
 
     Variable:
@@ -976,13 +980,13 @@ class Grid_of_voxels:
                  self,
                  mol,
                  prop,
-                 voxcenterx, 
-                 voxcentery, 
-                 voxcenterz, 
-                 voxcube_size, 
-                 voxsigma, 
-                 voxgrid_sizex, 
-                 voxgrid_sizey, 
+                 voxcenterx,
+                 voxcentery,
+                 voxcenterz,
+                 voxcube_size,
+                 voxsigma,
+                 voxgrid_sizex,
+                 voxgrid_sizey,
                  voxgrid_sizez
                  ):
         """Initialize variables,
@@ -1033,17 +1037,17 @@ class Grid_of_voxels:
             if self.prop=="AtomicNumber":
                 voxatm_prop=atm.GetAtomicNum()
             if self.prop=="MR":
-                voxatm_prop=float(self.atom_contributes[atm.GetIdx()][1])         
+                voxatm_prop=float(self.atom_contributes[atm.GetIdx()][1])
             if self.prop=="LogP":
                 voxatm_prop=float(self.atom_contributes[atm.GetIdx()][0])
-            voxatm_coords=self.mol.GetConformer().GetAtomPosition(atm.GetIdx())         
+            voxatm_coords=self.mol.GetConformer().GetAtomPosition(atm.GetIdx())
             voxatm_gx, voxatm_gy, voxatm_gz = grid_coords_from_xyz(
                                                 voxatm_coords.x,
-                                                voxatm_coords.y, 
-                                                voxatm_coords.z, 
-                                                self.voxcenterx, 
-                                                self.voxcentery, 
-                                                self.voxcenterz, 
+                                                voxatm_coords.y,
+                                                voxatm_coords.z,
+                                                self.voxcenterx,
+                                                self.voxcentery,
+                                                self.voxcenterz,
                                                 self.voxcube_size
                                                 )
             for runx in range(-self.voxsubgrid_size,self.voxsubgrid_size+1):
@@ -1104,9 +1108,9 @@ def grid_coords_from_xyz(
                   cx,
                   cy,
                   cz,
-                  centerx, 
-                  centery, 
-                  centerz, 
+                  centerx,
+                  centery,
+                  centerz,
                   cube_size
                   ):
     """Convert the Cartesian coordinates to the grid scale,
@@ -1116,12 +1120,12 @@ def grid_coords_from_xyz(
             cx - x coordinate of a point in the 3D space
             cy - y coordinate of a point in the 3D space
             cz - z coordinate of a point in the 3D space
-            centerx - x coordinate of the grid center in the 3D space 
-            centery - y coordinate of the grid center in the 3D space  
-            centerz - z coordinate of the grid center in the 3D space  
+            centerx - x coordinate of the grid center in the 3D space
+            centery - y coordinate of the grid center in the 3D space
+            centerz - z coordinate of the grid center in the 3D space
             cube_size - size (in Angstrom) of the cubes making the grid
        Variables:
-            gx, gy, gz - coordinates of the point in the grid 
+            gx, gy, gz - coordinates of the point in the grid
        (in the grid scale the coordinates of the center cube are [0][0][0])
     """
     gx = round((cx-centerx)/cube_size)
@@ -1270,22 +1274,22 @@ def operate_cli():
                                  "V{:g}_{:g}_{:g},".format(colx*args.r+args.cx,
                                                            coly*args.r+args.cy,
                                                            colz*args.r+args.cz)
-                                 )                                                                           
+                                 )
             if args.o != None:
                 output_file.write("NAME,ID\n")
             else:
                 sys.stdout.write("NAME,ID\n")
         if args.g=='pot': #Calculate and print descriptors
             gop = Grid_of_potential(
-                    mol, 
+                    mol,
                     args.p,
-                    args.cx, 
-                    args.cy, 
-                    args.cz, 
-                    args.r, 
-                    args.w, 
-                    grid_sizex, 
-                    grid_sizey, 
+                    args.cx,
+                    args.cy,
+                    args.cz,
+                    args.r,
+                    args.w,
+                    grid_sizex,
+                    grid_sizey,
                     grid_sizez)
             for colz in range(-grid_sizez,grid_sizez+1):
                 for coly in range(-grid_sizey,grid_sizey+1):
@@ -1300,15 +1304,15 @@ def operate_cli():
                                 )
         if args.g=='vox': #Calculate and print descriptors
             gov = Grid_of_voxels(
-                    mol, 
+                    mol,
                     args.p,
-                    args.cx, 
-                    args.cy, 
-                    args.cz, 
-                    args.r, 
-                    args.w, 
-                    voxgrid_sizex, 
-                    voxgrid_sizey, 
+                    args.cx,
+                    args.cy,
+                    args.cz,
+                    args.r,
+                    args.w,
+                    voxgrid_sizex,
+                    voxgrid_sizey,
                     voxgrid_sizez)
             for colz in range(-voxgrid_sizez,voxgrid_sizez+1):
                 for coly in range(-voxgrid_sizey,voxgrid_sizey+1):
